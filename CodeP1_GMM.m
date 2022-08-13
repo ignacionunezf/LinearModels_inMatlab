@@ -1,7 +1,8 @@
-% Question 1b) GMM
+% Code to run GMM with 1 regressor
+% Ignacio Nunez, Economics Department, UT-Austin
 clear;clear global;
 
-% As before (MLE), first I load the data into variables y, x, and X, and
+% First, I load the data into variables y, x, and X, and
 % store these variables as global.
 
 load data1.dat;  
@@ -17,9 +18,7 @@ X1=ones(size(x,1),1);
 X=[X1,x];
 
 % Second, I define the weight matrix A and use the function A_init, which
-% implements the formula in the assignment, to calculate an approximation
-% to the optimal weight matrix
-
+% implements an approximation to the optimal weight matrix
 
 global A;
 A=zeros(2,2);
@@ -41,8 +40,7 @@ DG_theta1=(G([theta_hat(1)*(1+step),theta_hat(2)])-G(theta_hat))/(step*theta_hat
 DG_theta2=(G([theta_hat(1),theta_hat(2)*(1+step)])-G(theta_hat))/(step*theta_hat(2));
 T=[DG_theta1,DG_theta2];
 
-% Lastly, I implement the formulas in the assignment to calculate the
-% standard errors of each estimator
+% Lastly, I calculate thestandard errors of each estimator
 
 V_aux=(1/size(y,1))^2*transpose(g_i(theta_hat))*g_i(theta_hat);
 V=inv(transpose(T)*A*T)*transpose(T)*A*V_aux*A*T*inv(transpose(T)*A*T);
@@ -50,10 +48,10 @@ V=inv(transpose(T)*A*T)*transpose(T)*A*V_aux*A*T*inv(transpose(T)*A*T);
 SE_theta1=sqrt(V(1,1));
 SE_theta2=sqrt(V(2,2));
 
+%If model is exactly identified, use:
+%V_aux=(1/size(y,1))^2*transpose(g_i(theta_hat))*g_i(theta_hat);
+%V2=inv(T)*V_aux*inv(T);
 
-V_aux=(1/size(y,1))^2*transpose(g_i(theta_hat))*g_i(theta_hat);
-V2=inv(T)*V_aux*inv(T);
-
-SE_theta1=sqrt(V(1,1));
-SE_theta2=sqrt(V(2,2));
+%SE_theta1=sqrt(V(1,1));
+%SE_theta2=sqrt(V(2,2));
 
