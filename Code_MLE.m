@@ -1,4 +1,5 @@
-% Question 1b) MLE
+% Code to run MLE with 1 regressor
+% Ignacio Nunez, Economics Department, UT-Austin
 clear;clear global;
 
 % First, I load the data into variables y, x, and X which contains a column
