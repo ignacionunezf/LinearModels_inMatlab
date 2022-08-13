@@ -1,3 +1,6 @@
+% Code to run OLS with 1 regressor
+% Ignacio Nunez, Economics Department, UT-Austin
+
 clear;clear global;
 
 % First, I load the data into variables y and x
